@@ -1,0 +1,8 @@
+
+{
+  "name": "GARAJI - Urban Garage Booking",
+  "description": "Find and book secure garages near you for motorcycles, bikes, or storage with instant digital access codes.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
