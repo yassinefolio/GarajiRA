@@ -106,6 +106,7 @@ const App: React.FC = () => {
       >
         <Plus size={28} />
       </div>
+      <NavButton icon={<MessageCircle size={24} />} label="Msgs" active={currentScreen === 'messages'} onClick={() => setCurrentScreen('messages')} />
       <NavButton icon={<User size={24} />} label="Profile" active={currentScreen === 'profile'} onClick={() => setCurrentScreen('profile')} />
     </div>
   );
