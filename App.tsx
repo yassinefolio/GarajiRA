@@ -97,7 +97,7 @@ const App: React.FC = () => {
   );
 
   const BottomNav = () => (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-between items-center px-6 py-4 z-40">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center px-6 py-4 z-40">
       <NavButton icon={<HomeIcon size={24} />} label="Home" active={currentScreen === 'home'} onClick={() => setCurrentScreen('home')} />
       <NavButton icon={<Lock size={24} />} label="Access" active={currentScreen === 'access'} onClick={() => setCurrentScreen('access')} />
       <div 
@@ -106,7 +106,7 @@ const App: React.FC = () => {
       >
         <Plus size={28} />
       </div>
-      <NavButton icon={<User size={24} />} label="Profile" active={currentScreen === 'profile'} onClick={() => setCurrentScreen('profile')} />
+     <NavButton icon={<User size={24} />} label="Profile" active={currentScreen === 'profile'} onClick={() => setCurrentScreen('profile')} />
     </div>
   );
 
