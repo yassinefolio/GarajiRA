@@ -97,16 +97,17 @@ const App: React.FC = () => {
   );
 
   const BottomNav = () => (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 flex justify-around items-center px-6 py-4 z-40">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 grid grid-cols-5 items-end px-4 py-3 z-40">
       <NavButton icon={<HomeIcon size={24} />} label="Home" active={currentScreen === 'home'} onClick={() => setCurrentScreen('home')} />
       <NavButton icon={<Lock size={24} />} label="Access" active={currentScreen === 'access'} onClick={() => setCurrentScreen('access')} />
       <div 
         onClick={() => setCurrentScreen('add')}
-        className="w-12 h-12 bg-[#3A6EA5] rounded-full flex items-center justify-center text-white -mt-10 shadow-lg"
+        className="w-12 h-12 bg-[#3A6EA5] rounded-full flex items-center justify-center text-white -mt-8 shadow-lg justify-self-center cursor-pointer"
       >
         <Plus size={28} />
       </div>
-     <NavButton icon={<User size={24} />} label="Profile" active={currentScreen === 'profile'} onClick={() => setCurrentScreen('profile')} />
+      <NavButton icon={<MessageCircle size={24} />} label="Messages" active={currentScreen === 'messages'} onClick={() => setCurrentScreen('messages')} />
+      <NavButton icon={<User size={24} />} label="Profile" active={currentScreen === 'profile'} onClick={() => setCurrentScreen('profile')} />
     </div>
   );
 
@@ -539,6 +540,36 @@ const App: React.FC = () => {
     </div>
   );
 
+  const MessagesScreen = () => (
+    <div className="pb-24 pt-12 px-6 bg-[#F7F8FA] min-h-screen">
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-[#1F2933]">Messages</h1>
+        <p className="text-[#6B7280] text-sm mt-1">Chat directly with garage owners before or during your booking.</p>
+      </div>
+
+      <div className="space-y-4">
+        {[
+          { id: '1', owner: 'Samir H.', garage: 'Downtown Secure Garage', preview: 'Gate opens with code 4482. Let me know when you arrive.', time: '2m ago', unread: true, image: 'https://picsum.photos/seed/owner-chat-1/120/120' },
+          { id: '2', owner: 'Lina R.', garage: 'Brookline Private Spot', preview: 'I can keep your parcel inside the side cabinet if needed.', time: '1h ago', unread: false, image: 'https://picsum.photos/seed/owner-chat-2/120/120' },
+          { id: '3', owner: 'Mazen T.', garage: 'West End Storage Bay', preview: 'Thanks for booking! The entrance is next to the blue door.', time: 'Yesterday', unread: false, image: 'https://picsum.photos/seed/owner-chat-3/120/120' }
+        ].map((chat) => (
+          <button key={chat.id} className="w-full bg-white rounded-3xl p-4 shadow-sm border border-gray-50 flex items-center gap-3 text-left">
+            <img src={chat.image} alt={chat.owner} className="w-12 h-12 rounded-xl object-cover" />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-bold text-sm text-[#1F2933] truncate">{chat.owner}</h3>
+                <span className="text-[10px] text-[#6B7280]">{chat.time}</span>
+              </div>
+              <p className="text-[11px] font-medium text-[#3A6EA5] mb-0.5 truncate">{chat.garage}</p>
+              <p className="text-xs text-[#6B7280] truncate">{chat.preview}</p>
+            </div>
+            {chat.unread && <span className="w-2.5 h-2.5 bg-[#FF6B4A] rounded-full" />}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
   const MenuItem = ({ label, icon, color = 'text-[#1F2933]' }: any) => (
     <div className="flex items-center px-6 py-4 border-b border-gray-50 last:border-0 cursor-pointer active:bg-gray-50">
       <div className={`${color} mr-4`}>{icon}</div>
@@ -581,6 +612,12 @@ const App: React.FC = () => {
         {currentScreen === 'profile' && (
           <motion.div key="profile" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <ProfileScreen />
+            <BottomNav />
+          </motion.div>
+        )}
+        {currentScreen === 'messages' && (
+          <motion.div key="messages" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <MessagesScreen />
             <BottomNav />
           </motion.div>
         )}
